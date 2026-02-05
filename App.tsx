@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
@@ -105,15 +104,23 @@ const App: React.FC = () => {
   return (
     <div className={`h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white ${!isMobile ? 'cursor-none' : ''}`}>
       {!isMobile && (
-        <motion.div 
-          className="fixed top-0 left-0 w-12 h-12 bg-acelera-orange rounded-full z-[100] pointer-events-none flex items-center justify-center mix-blend-difference"
-          animate={{ 
-            x: mousePos.x - 24, 
-            y: mousePos.y - 24,
+        <motion.div
+          className="fixed top-0 left-0 z-[100] pointer-events-none"
+          animate={{
+            x: mousePos.x - 28,
+            y: mousePos.y - 12,
           }}
           transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.5 }}
         >
-          <ArrowRight size={24} className="text-white" />
+          <svg viewBox="0 0 140 60" className="w-14 h-auto fill-acelera-orange drop-shadow-[0_0_8px_rgba(255,107,0,0.8)]">
+            <path d="M20,45 L120,45 L115,25 L60,25 L55,15 L25,15 Z" />
+            <rect x="15" y="10" width="10" height="30" className="fill-dark-charcoal" />
+            <path d="M10,10 L30,10 L30,15 L10,15 Z" className="fill-acelera-orange" />
+            <path d="M120,40 L135,40 L135,45 L115,45 Z" className="fill-dark-charcoal" />
+            <circle cx="40" cy="45" r="10" className="fill-dark-charcoal" />
+            <circle cx="105" cy="45" r="10" className="fill-dark-charcoal" />
+            <path d="M60,25 L85,25 L82,30 L63,30 Z" className="fill-white/30" />
+          </svg>
         </motion.div>
       )}
 
