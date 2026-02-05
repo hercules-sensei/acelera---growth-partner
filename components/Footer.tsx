@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
               <span className="text-white font-bold mb-2">Company</span>
               <a href="#" className="hover:text-acelera-orange transition-colors">Approach</a>
               <a href="#" className="hover:text-acelera-orange transition-colors">Impact</a>
-              <a href="#" className="hover:text-acelera-orange transition-colors">Contact</a>
+              <a href="https://calendar.app.google/29to7brSPsZf5huk6" target="_blank" rel="noopener noreferrer" className="hover:text-acelera-orange transition-colors">Contact</a>
             </div>
             <div className="flex flex-col gap-3">
               <span className="text-white font-bold mb-2">Legal</span>
