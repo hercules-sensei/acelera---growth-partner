@@ -88,47 +88,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
                        <Zap className="text-acelera-orange w-3 h-3 fill-acelera-orange animate-pulse opacity-60" />
                     </div>
                   )}
-                  {/* Detailed F1 Car SVG */}
-                  <svg viewBox="0 0 220 80" className="w-full h-auto drop-shadow-[0_0_10px_rgba(255,107,0,0.8)]">
-                    {/* Ground shadow */}
-                    <ellipse cx="115" cy="74" rx="85" ry="4" fill="#000" opacity="0.12"/>
-                    {/* Front wing */}
-                    <path d="M2,60 L48,60 L48,56 L15,54 L10,50 L2,50 Z" fill="#1A1A1A"/>
-                    <path d="M2,50 L2,46 L6,46 L10,50 Z" fill="#FF6B00"/>
-                    {/* Nose cone */}
-                    <path d="M40,56 L52,44 L68,38 L72,36 L72,56 Z" fill="#FF6B00"/>
-                    {/* Main monocoque */}
-                    <path d="M72,36 L85,30 L98,26 Q105,20 115,18 Q122,16 128,18 L132,22 L135,26 L165,30 L178,38 L180,56 L72,56 Z" fill="#FF6B00"/>
-                    {/* Side accent stripe */}
-                    <path d="M58,50 L176,50 L177,54 L56,54 Z" fill="white" opacity="0.12"/>
-                    {/* Cockpit opening */}
-                    <path d="M98,28 Q105,20 115,18 Q120,17 124,18 L124,28 Z" fill="#1A1A1A"/>
-                    {/* Halo */}
-                    <path d="M100,28 C106,12 120,12 124,28" stroke="#999" strokeWidth="3" fill="none" strokeLinecap="round"/>
-                    {/* Driver helmet */}
-                    <ellipse cx="112" cy="22" rx="4" ry="5" fill="#FF6B00" opacity="0.5"/>
-                    {/* Air intake */}
-                    <path d="M126,18 L130,10 L136,10 L132,22 Z" fill="#1A1A1A"/>
-                    {/* Engine cover highlight */}
-                    <path d="M132,22 L148,24 L165,30 L178,38 L135,26 Z" fill="#E66000"/>
-                    {/* Rear wing endplates */}
-                    <path d="M188,56 L188,12 L192,12 L192,56 Z" fill="#1A1A1A"/>
-                    <path d="M212,56 L212,14 L216,14 L216,56 Z" fill="#1A1A1A"/>
-                    {/* Rear wing main plane */}
-                    <rect x="186" y="12" width="32" height="5" rx="1.5" fill="#1A1A1A"/>
-                    {/* Rear wing flap */}
-                    <rect x="188" y="20" width="28" height="3.5" rx="1" fill="#FF6B00"/>
-                    {/* Floor plank */}
-                    <rect x="42" y="56" width="148" height="4" rx="1" fill="#333"/>
-                    {/* Front wheel */}
-                    <ellipse cx="55" cy="62" rx="12" ry="14" fill="#1A1A1A"/>
-                    <ellipse cx="55" cy="62" rx="8" ry="10" fill="#2A2A2A"/>
-                    <circle cx="55" cy="62" r="3.5" fill="#FF6B00"/>
-                    {/* Rear wheel */}
-                    <ellipse cx="172" cy="62" rx="14" ry="16" fill="#1A1A1A"/>
-                    <ellipse cx="172" cy="62" rx="9" ry="11" fill="#2A2A2A"/>
-                    <circle cx="172" cy="62" r="4" fill="#FF6B00"/>
-                  </svg>
+                  <img
+                    src="/f1-car.png"
+                    alt="F1 Car"
+                    className="w-full h-auto drop-shadow-[0_0_10px_rgba(255,107,0,0.8)]"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
                   {/* Trail effects when racing */}
                   {raceState === 'racing' && (
                     <>
