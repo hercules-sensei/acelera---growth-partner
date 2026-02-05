@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acelera | B2B & DTC Growth Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'stone-light': '#F9F8F3',
+                        'stone-warm': '#F4F2EB',
+                        'acelera-orange': '#FF6B00',
+                        'acelera-orange-hover': '#E66000',
+                        'dark-charcoal': '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Instrument Sans', 'sans-serif'],
+                        serif: ['Instrument Serif', 'serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Disable standard scrolling */
+            background-color: #F9F8F3;
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+            height: 100%;
+        }
+        .brand-gradient {
+            background: radial-gradient(circle at top right, rgba(255, 107, 0, 0.15), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(255, 107, 0, 0.05), transparent 50%);
+        }
+        /* Hide scrollbar but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root" style="height: 100vh; overflow: hidden;"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

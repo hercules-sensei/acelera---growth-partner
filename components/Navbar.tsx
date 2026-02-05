@@ -1,0 +1,146 @@
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Zap } from 'lucide-react';
+
+interface NavbarProps {
+  onNavClick: (index: number) => void;
+  activeIndex: number;
+  slides: Array<{ id: string }>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
+  const [raceState, setRaceState] = useState<'idle' | 'falling' | 'bouncing' | 'racing' | 'done'>('idle');
+  const [logoRevealed, setLogoRevealed] = useState(false);
+
+  const getIndexById = (id: string) => slides.findIndex(s => s.id === id);
+
+  const startIntroRace = () => {
+    if (raceState !== 'idle') return;
+    setRaceState('falling');
+  };
+
+  const handleAnimationComplete = (definition: any) => {
+    if (raceState === 'falling') {
+      setRaceState('racing');
+    } else if (raceState === 'racing') {
+      setRaceState('done');
+      setLogoRevealed(true);
+    }
+  };
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 py-6 md:py-10 transition-all duration-300 bg-transparent">
+      <div className="container mx-auto px-6 md:px-16 flex justify-between items-center relative h-10 md:h-12">
+        {/* Logo / Race Button Container */}
+        <div className="relative flex items-center gap-2 md:gap-3 shrink-0 h-full">
+          <AnimatePresence mode="wait">
+            {!logoRevealed && raceState === 'idle' ? (
+              <motion.button
+                key="start-btn"
+                onClick={startIntroRace}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.1 }}
+                className="group flex items-center gap-2 px-3 py-1.5 md:px-5 md:py-2.5 bg-acelera-orange text-white rounded-full text-[10px] md:text-sm font-bold uppercase tracking-widest shadow-lg hover:scale-105 transition-transform"
+              >
+                <Play size={14} fill="currentColor" />
+                START RACE
+              </motion.button>
+            ) : logoRevealed && (
+              <motion.button 
+                key="final-logo"
+                onClick={() => onNavClick(0)}
+                initial={{ opacity: 0, x: -20, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                className="flex items-center gap-2 md:gap-3 group"
+              >
+                <div className="w-8 h-8 md:w-10 md:h-10 bg-acelera-orange rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
+                  <div className="w-3 h-3 md:w-4 md:h-4 bg-white rounded-sm rotate-45"></div>
+                </div>
+                <span className="text-lg md:text-2xl font-bold tracking-tight uppercase whitespace-nowrap">Acelera</span>
+              </motion.button>
+            )}
+          </AnimatePresence>
+
+          {/* Miniature F1 Car Animation */}
+          <AnimatePresence>
+            {raceState !== 'idle' && raceState !== 'done' && (
+              <motion.div
+                className="absolute left-0 pointer-events-none z-50 flex items-center justify-center"
+                initial={{ y: -500, x: 0, opacity: 1 }}
+                animate={
+                  raceState === 'falling' 
+                    ? { y: 0, x: 0 } 
+                    : { x: '100vw', y: 0 }
+                }
+                transition={
+                  raceState === 'falling'
+                    ? { type: 'spring', damping: 10, stiffness: 100, mass: 1 }
+                    : { duration: 0.8, ease: [0.7, 0, 0.3, 1] }
+                }
+                onAnimationComplete={handleAnimationComplete}
+              >
+                <div className="relative w-16 md:w-24 flex items-center">
+                  {raceState === 'racing' && (
+                    <div className="absolute -left-12 flex gap-2">
+                       <Zap className="text-acelera-orange w-4 h-4 fill-acelera-orange animate-pulse" />
+                    </div>
+                  )}
+                  {/* Miniature Detailed F1 Car SVG */}
+                  <svg viewBox="0 0 140 60" className="w-full h-auto fill-acelera-orange filter drop-shadow-[0_0_8px_rgba(255,107,0,0.8)]">
+                    <path d="M20,45 L120,45 L115,25 L60,25 L55,15 L25,15 Z" />
+                    <rect x="15" y="10" width="10" height="30" className="fill-dark-charcoal" />
+                    <path d="M10,10 L30,10 L30,15 L10,15 Z" className="fill-acelera-orange" />
+                    <path d="M120,40 L135,40 L135,45 L115,45 Z" className="fill-dark-charcoal" />
+                    <circle cx="40" cy="45" r="10" className="fill-dark-charcoal" />
+                    <circle cx="105" cy="45" r="10" className="fill-dark-charcoal" />
+                    <path d="M60,25 L85,25 L82,30 L63,30 Z" className="fill-white/30" />
+                  </svg>
+                  {/* Trail blur when racing */}
+                  {raceState === 'racing' && (
+                    <motion.div 
+                      className="absolute left-0 h-full bg-gradient-to-r from-transparent to-acelera-orange/20 blur-xl w-32 -translate-x-full"
+                    />
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        
+        <div className="hidden lg:flex items-center gap-14 text-base font-bold uppercase tracking-widest opacity-80">
+          <button 
+            onClick={() => onNavClick(getIndexById('authority'))} 
+            className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('authority') ? 'text-dark-charcoal opacity-100' : ''}`}
+          >
+            Our Method
+          </button>
+          <button 
+            onClick={() => onNavClick(getIndexById('services'))} 
+            className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('services') ? 'text-dark-charcoal opacity-100' : ''}`}
+          >
+            Services
+          </button>
+          <button 
+            onClick={() => onNavClick(getIndexById('philosophy'))} 
+            className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('philosophy') ? 'text-dark-charcoal opacity-100' : ''}`}
+          >
+            Philosophy
+          </button>
+        </div>
+
+        <a 
+          href="https://calendar.app.google/29to7brSPsZf5huk6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 md:px-8 md:py-3.5 bg-dark-charcoal text-white rounded-full text-[10px] md:text-base font-bold uppercase tracking-widest hover:scale-105 transition-transform shrink-0"
+        >
+          Book Call
+        </a>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
