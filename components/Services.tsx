@@ -35,16 +35,16 @@ const Services: React.FC = () => {
             </div>
           </div>
           
-          <div className="lg:w-1/2 w-full grid gap-4 md:gap-6">
+          <div className="lg:w-1/2 w-full grid gap-2.5 md:gap-6">
             {services.map((service, idx) => (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white p-5 md:p-8 rounded-[1.5rem] md:rounded-4xl border border-stone-200 hover:border-acelera-orange transition-all flex items-center gap-4 md:gap-6 group shadow-sm hover:shadow-xl"
+                className="bg-white p-3 md:p-8 rounded-xl md:rounded-4xl border border-stone-200 hover:border-acelera-orange transition-all flex items-center gap-3 md:gap-6 group shadow-sm hover:shadow-xl"
               >
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-stone-50 flex items-center justify-center group-hover:bg-acelera-orange/10 transition-colors shrink-0">
+                <div className="w-6 h-6 md:w-10 md:h-10 rounded-full bg-stone-50 flex items-center justify-center group-hover:bg-acelera-orange/10 transition-colors shrink-0">
                   <CheckCircle2 className="text-stone-300 group-hover:text-acelera-orange transition-colors" size={20} />
                 </div>
                 <span className="text-lg md:text-2xl font-bold tracking-tight">{service}</span>
