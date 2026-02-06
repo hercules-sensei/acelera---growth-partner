@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="h-full w-full flex items-center justify-center relative px-6 overflow-hidden pt-28 md:pt-36 pb-4">
+    <section className="h-full w-full flex items-center justify-center relative px-6 overflow-hidden pt-14 md:pt-28 pb-4">
       <div className="absolute inset-0 -z-10 brand-gradient opacity-40"></div>
       
       <AnimatePresence>

@@ -25,9 +25,14 @@ const App: React.FC = () => {
   const [direction, setDirection] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+
+  const currentIndexRef = useRef(0);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
+  const touchStartX = useRef(0);
   const touchHandled = useRef(false);
+
+  currentIndexRef.current = currentIndex;
 
   useEffect(() => {
     const checkMobile = () => {
@@ -48,48 +53,55 @@ const App: React.FC = () => {
     };
   }, [isMobile]);
 
-  const goToSlide = useCallback((index: number) => {
-    if (index === currentIndex || isAnimating.current) return;
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(Math.max(0, Math.min(index, SLIDES.length - 1)));
+  const navigate = useCallback((nextIndex: number) => {
+    const current = currentIndexRef.current;
+    if (nextIndex === current || isAnimating.current) return;
+    if (nextIndex < 0 || nextIndex >= SLIDES.length) return;
+    setDirection(nextIndex > current ? 1 : -1);
+    setCurrentIndex(nextIndex);
     isAnimating.current = true;
-    setTimeout(() => { isAnimating.current = false; }, 650);
-  }, [currentIndex]);
+    setTimeout(() => { isAnimating.current = false; }, 700);
+  }, []);
 
+  // Wheel handler — registered once, uses ref
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (isAnimating.current) return;
       if (Math.abs(e.deltaY) < 3) return;
-
-      if (e.deltaY > 0 && currentIndex < SLIDES.length - 1) {
-        goToSlide(currentIndex + 1);
-      } else if (e.deltaY < 0 && currentIndex > 0) {
-        goToSlide(currentIndex - 1);
-      }
+      const idx = currentIndexRef.current;
+      if (e.deltaY > 0) navigate(idx + 1);
+      else navigate(idx - 1);
     };
-
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, [currentIndex, goToSlide]);
+  }, [navigate]);
 
+  // Touch handler — registered once, uses refs, distinguishes vertical vs horizontal
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
+      touchStartX.current = e.touches[0].clientX;
       touchHandled.current = false;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
       if (isAnimating.current || touchHandled.current) return;
-      const deltaY = touchStartY.current - e.touches[0].clientY;
-      if (Math.abs(deltaY) < 40) return;
 
+      const deltaY = touchStartY.current - e.touches[0].clientY;
+      const deltaX = touchStartX.current - e.touches[0].clientX;
+
+      // If horizontal swipe is dominant, let it through (for card swiping)
+      if (Math.abs(deltaX) > Math.abs(deltaY)) return;
+
+      // Only act on clear vertical swipes
+      if (Math.abs(deltaY) < 30) return;
+
+      e.preventDefault();
       touchHandled.current = true;
-      if (deltaY > 0 && currentIndex < SLIDES.length - 1) {
-        goToSlide(currentIndex + 1);
-      } else if (deltaY < 0 && currentIndex > 0) {
-        goToSlide(currentIndex - 1);
-      }
+
+      const idx = currentIndexRef.current;
+      if (deltaY > 0) navigate(idx + 1);
+      else navigate(idx - 1);
     };
 
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
@@ -98,7 +110,7 @@ const App: React.FC = () => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [currentIndex, goToSlide]);
+  }, [navigate]);
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -148,8 +160,8 @@ const App: React.FC = () => {
         </motion.div>
       )}
 
-      <Navbar onNavClick={goToSlide} activeIndex={currentIndex} slides={SLIDES} />
-      
+      <Navbar onNavClick={navigate} activeIndex={currentIndex} slides={SLIDES} />
+
       <main className="relative h-full w-full overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
@@ -161,10 +173,10 @@ const App: React.FC = () => {
             exit="exit"
             className="absolute inset-0 w-full h-full flex flex-col items-center justify-center"
           >
-            <ActiveComponent 
-              isActive={true} 
-              goToNext={() => currentIndex < SLIDES.length - 1 && goToSlide(currentIndex + 1)} 
-              goToSlide={goToSlide}
+            <ActiveComponent
+              isActive={true}
+              goToNext={() => navigate(currentIndexRef.current + 1)}
+              goToSlide={navigate}
             />
           </motion.div>
         </AnimatePresence>
@@ -175,7 +187,7 @@ const App: React.FC = () => {
           <button
             key={i}
             aria-label={`Go to slide ${i + 1}`}
-            onClick={() => goToSlide(i)}
+            onClick={() => navigate(i)}
             className={`w-1.5 h-8 rounded-full transition-all duration-500 outline-none ${
               i === currentIndex ? 'bg-acelera-orange scale-y-125' : 'bg-dark-charcoal/10 hover:bg-dark-charcoal/30'
             }`}

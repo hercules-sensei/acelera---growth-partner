@@ -11,7 +11,7 @@ const Mission: React.FC<MissionProps> = ({ goToSlide }) => {
   const BOOKING_URL = "https://calendar.app.google/29to7brSPsZf5huk6";
 
   return (
-    <section className="h-full w-full flex items-center justify-center bg-stone-warm px-6 pt-24 pb-12 overflow-y-auto sm:overflow-hidden">
+    <section className="h-full w-full flex items-center justify-center bg-stone-warm px-6 pt-14 md:pt-24 pb-6 overflow-y-auto sm:overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <motion.div

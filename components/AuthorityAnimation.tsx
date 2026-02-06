@@ -107,7 +107,7 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
   };
 
   return (
-    <section className="relative h-full w-full overflow-hidden bg-stone-light flex items-center justify-center pt-24 pb-8">
+    <section className="relative h-full w-full overflow-hidden bg-stone-light flex items-center justify-center pt-14 md:pt-24 pb-4">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {particles.map((p) => {
           return (

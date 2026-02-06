@@ -11,7 +11,7 @@ const services = [
 
 const Services: React.FC = () => {
   return (
-    <section className="h-full w-full flex items-center justify-center bg-stone-light px-6 pt-24 pb-12 overflow-y-auto sm:overflow-hidden">
+    <section className="h-full w-full flex items-center justify-center bg-stone-light px-6 pt-14 md:pt-24 pb-6 overflow-y-auto sm:overflow-hidden">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
           <div className="lg:w-1/2 text-center lg:text-left">

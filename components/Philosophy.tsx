@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Philosophy: React.FC = () => {
   return (
-    <section className="h-full w-full flex items-center justify-center px-4 md:px-12 pt-24 pb-12 overflow-y-auto sm:overflow-hidden">
+    <section className="h-full w-full flex items-center justify-center px-4 md:px-12 pt-14 md:pt-24 pb-6 overflow-y-auto sm:overflow-hidden">
       <motion.div 
         layoutId="phil-card"
         className="bg-dark-charcoal text-white rounded-[2rem] md:rounded-5xl w-full max-w-7xl min-h-[70vh] flex items-center p-8 md:p-24 relative overflow-hidden"
