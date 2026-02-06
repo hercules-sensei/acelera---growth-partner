@@ -159,7 +159,7 @@ const App: React.FC = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pt-20 md:pt-24 pb-4"
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center"
           >
             <ActiveComponent 
               isActive={true} 
