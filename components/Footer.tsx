@@ -7,9 +7,8 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-6 h-6 bg-acelera-orange rounded-full"></div>
-              <span className="text-xl font-bold tracking-tight uppercase">Acelera</span>
+            <div className="mb-6">
+              <img src="/logo.png" alt="Acelera" className="h-6 w-auto brightness-0 invert" />
             </div>
             <p className="text-stone-500 max-w-sm">
               Authority-driven acquisition for B2B services and DTC brands looking for solid, real-world growth.
