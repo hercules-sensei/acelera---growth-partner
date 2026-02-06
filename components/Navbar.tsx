@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-6 md:py-10 transition-all duration-300 bg-transparent">
-      <div className="container mx-auto px-6 md:px-16 flex justify-between items-center relative h-10 md:h-12">
+      <div className="container mx-auto px-6 md:px-16 flex justify-between items-center relative h-12 md:h-16">
         {/* Logo / Race Button Container */}
         <div className="relative flex items-center gap-2 md:gap-3 shrink-0 h-full">
           <AnimatePresence mode="wait">
@@ -55,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 className="flex items-center gap-2 md:gap-3 group"
               >
-                <img src="/logo.png" alt="Acelera" className="h-8 md:h-14 w-auto transition-transform group-hover:scale-105" />
+                <img src="/logo.png" alt="Acelera" className="h-12 md:h-16 w-auto transition-transform group-hover:scale-105" />
               </motion.button>
             )}
           </AnimatePresence>

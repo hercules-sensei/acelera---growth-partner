@@ -23,35 +23,12 @@ const SLIDES = [
 const App: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
-
   const currentIndexRef = useRef(0);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
   const touchStartX = useRef(0);
-  const touchHandled = useRef(false);
 
   currentIndexRef.current = currentIndex;
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    if (!isMobile) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, [isMobile]);
 
   const navigate = useCallback((nextIndex: number) => {
     const current = currentIndexRef.current;
@@ -76,39 +53,31 @@ const App: React.FC = () => {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [navigate]);
 
-  // Touch handler — registered once, uses refs, distinguishes vertical vs horizontal
+  // Touch handler — uses touchend for reliability, both listeners passive
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
       touchStartX.current = e.touches[0].clientX;
-      touchHandled.current = false;
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isAnimating.current || touchHandled.current) return;
-
-      const deltaY = touchStartY.current - e.touches[0].clientY;
-      const deltaX = touchStartX.current - e.touches[0].clientX;
-
-      // If horizontal swipe is dominant, let it through (for card swiping)
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isAnimating.current) return;
+      const endY = e.changedTouches[0].clientY;
+      const endX = e.changedTouches[0].clientX;
+      const deltaY = touchStartY.current - endY;
+      const deltaX = touchStartX.current - endX;
       if (Math.abs(deltaX) > Math.abs(deltaY)) return;
-
-      // Only act on clear vertical swipes
-      if (Math.abs(deltaY) < 30) return;
-
-      e.preventDefault();
-      touchHandled.current = true;
-
+      if (Math.abs(deltaY) < 50) return;
       const idx = currentIndexRef.current;
       if (deltaY > 0) navigate(idx + 1);
       else navigate(idx - 1);
     };
 
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
   }, [navigate]);
 
@@ -144,21 +113,7 @@ const App: React.FC = () => {
   const ActiveComponent = SLIDES[currentIndex].component;
 
   return (
-    <div className={`h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white ${!isMobile ? 'cursor-none' : ''}`} style={{ touchAction: 'none' }}>
-      {!isMobile && (
-        <motion.div
-          className="fixed top-0 left-0 z-[100] pointer-events-none"
-          animate={{
-            x: mousePos.x,
-            y: mousePos.y,
-          }}
-          transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.5 }}
-        >
-          <svg viewBox="0 0 24 24" className="w-7 h-7 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" fill="none">
-            <path d="M2,2 L2,20 L7,15 L12,22 L15,20 L10,13 L17,13 Z" fill="#FF6B00" stroke="#1A1A1A" strokeWidth="1.5" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-      )}
+    <div className="h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white">
 
       <Navbar onNavClick={navigate} activeIndex={currentIndex} slides={SLIDES} />
 
