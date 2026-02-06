@@ -27,6 +27,7 @@ const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
+  const touchHandled = useRef(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -74,13 +75,16 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
+      touchHandled.current = false;
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isAnimating.current) return;
-      const deltaY = touchStartY.current - e.changedTouches[0].clientY;
-      if (Math.abs(deltaY) < 50) return;
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      if (isAnimating.current || touchHandled.current) return;
+      const deltaY = touchStartY.current - e.touches[0].clientY;
+      if (Math.abs(deltaY) < 40) return;
 
+      touchHandled.current = true;
       if (deltaY > 0 && currentIndex < SLIDES.length - 1) {
         goToSlide(currentIndex + 1);
       } else if (deltaY < 0 && currentIndex > 0) {
@@ -89,10 +93,10 @@ const App: React.FC = () => {
     };
 
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
     return () => {
       window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
+      window.removeEventListener('touchmove', handleTouchMove);
     };
   }, [currentIndex, goToSlide]);
 
@@ -128,7 +132,7 @@ const App: React.FC = () => {
   const ActiveComponent = SLIDES[currentIndex].component;
 
   return (
-    <div className={`h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white ${!isMobile ? 'cursor-none' : ''}`}>
+    <div className={`h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white ${!isMobile ? 'cursor-none' : ''}`} style={{ touchAction: 'none' }}>
       {!isMobile && (
         <motion.div
           className="fixed top-0 left-0 z-[100] pointer-events-none"
@@ -155,7 +159,7 @@ const App: React.FC = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center"
+            className="absolute inset-0 w-full h-full flex flex-col items-center justify-center pt-20 md:pt-24 pb-4"
           >
             <ActiveComponent 
               isActive={true} 
