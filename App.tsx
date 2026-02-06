@@ -26,6 +26,7 @@ const App: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const isAnimating = useRef(false);
+  const touchStartY = useRef(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -68,6 +69,31 @@ const App: React.FC = () => {
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
+  }, [currentIndex, goToSlide]);
+
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isAnimating.current) return;
+      const deltaY = touchStartY.current - e.changedTouches[0].clientY;
+      if (Math.abs(deltaY) < 50) return;
+
+      if (deltaY > 0 && currentIndex < SLIDES.length - 1) {
+        goToSlide(currentIndex + 1);
+      } else if (deltaY < 0 && currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [currentIndex, goToSlide]);
 
   const slideVariants = {
