@@ -56,12 +56,20 @@ const App: React.FC = () => {
   // Touch handler — uses touchend for reliability, both listeners passive
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+      // Ignore touches on horizontally scrollable elements
+      if (target.closest('.overflow-x-auto, .snap-x')) return;
+
       touchStartY.current = e.touches[0].clientY;
       touchStartX.current = e.touches[0].clientX;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (isAnimating.current) return;
+      const target = e.target as HTMLElement;
+      // Ignore touches on horizontally scrollable elements
+      if (target.closest('.overflow-x-auto, .snap-x')) return;
+
       const endY = e.changedTouches[0].clientY;
       const endX = e.changedTouches[0].clientX;
       const deltaY = touchStartY.current - endY;

@@ -17,6 +17,12 @@ interface Particle {
 const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) => {
   const [state, setState] = useState<AnimationState>('noise');
   const [mode, setMode] = useState<Mode>('B2B');
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile on mount
+  React.useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   const words = ["clicks", "impressions", "reach", "leads", "traffic", "activity", "noise", "likes", "shares", "volume"];
 
@@ -78,7 +84,11 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
 
   const particles: Particle[] = useMemo(() => {
     const p: Particle[] = [];
-    words.forEach((word, i) => {
+    // Reduce particles on mobile to prevent crashes
+    const maxWords = isMobile ? 5 : 10;
+    const maxDots = isMobile ? 5 : 20;
+
+    words.slice(0, maxWords).forEach((word, i) => {
       p.push({
         id: i,
         text: word,
@@ -87,7 +97,7 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
         type: 'word'
       });
     });
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < maxDots; i++) {
       p.push({
         id: words.length + i,
         text: '',
@@ -97,7 +107,7 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
       });
     }
     return p;
-  }, []);
+  }, [isMobile]);
 
   const handleApplyStrategy = () => {
     setState('transforming');
@@ -108,32 +118,35 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
 
   return (
     <section className="relative h-full w-full overflow-hidden bg-stone-light flex items-center justify-center pt-14 md:pt-24 pb-4">
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {particles.map((p) => {
-          return (
-            <motion.div
-              key={p.id}
-              initial={false}
-              animate={{
-                left: state === 'noise' ? `${p.initialX}%` : '50%',
-                top: state === 'noise' ? `${p.initialY}%` : '50%',
-                opacity: state === 'authority' ? 0 : 0.4,
-                scale: state === 'noise' ? 1 : 0,
-                filter: state === 'transforming' ? 'blur(10px)' : 'blur(0px)',
-              }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute whitespace-nowrap"
-              style={{ transform: 'translate(-50%, -50%)' }}
-            >
-              {p.type === 'word' ? (
-                <span className="text-stone-400 font-bold text-[8px] md:text-xs uppercase tracking-widest">{p.text}</span>
-              ) : (
-                <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-stone-300 rounded-full" />
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
+      {/* Particles background - only render if not in authority state to reduce load */}
+      {state !== 'authority' && (
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          {particles.map((p) => {
+            return (
+              <motion.div
+                key={p.id}
+                initial={false}
+                animate={{
+                  left: state === 'noise' ? `${p.initialX}%` : '50%',
+                  top: state === 'noise' ? `${p.initialY}%` : '50%',
+                  opacity: 0.4,
+                  scale: state === 'noise' ? 1 : 0,
+                  filter: state === 'transforming' ? 'blur(10px)' : 'blur(0px)',
+                }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute whitespace-nowrap"
+                style={{ transform: 'translate(-50%, -50%)' }}
+              >
+                {p.type === 'word' ? (
+                  <span className="text-stone-400 font-bold text-[8px] md:text-xs uppercase tracking-widest">{p.text}</span>
+                ) : (
+                  <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-stone-300 rounded-full" />
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
 
       <div className="container mx-auto px-4 relative z-10 text-center max-w-7xl h-full flex flex-col justify-center">
         <AnimatePresence mode="wait">
@@ -232,14 +245,22 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
                         {pillar.text}
                       </p>
 
+                      {/* Disable pulsing dots on mobile for better performance */}
                       <div className="absolute bottom-3 right-5 flex gap-1 opacity-20 group-hover:opacity-100 transition-opacity">
                          {[...Array(idx + 1)].map((_, i) => (
-                           <motion.div 
-                            key={i}
-                            animate={{ opacity: [0.2, 1, 0.2] }}
-                            transition={{ duration: 0.8, delay: i * 0.1, repeat: Infinity }}
-                            className="w-1 h-1 rounded-full bg-acelera-orange"
-                           />
+                           isMobile ? (
+                             <div
+                               key={i}
+                               className="w-1 h-1 rounded-full bg-acelera-orange"
+                             />
+                           ) : (
+                             <motion.div
+                               key={i}
+                               animate={{ opacity: [0.2, 1, 0.2] }}
+                               transition={{ duration: 0.8, delay: i * 0.1, repeat: Infinity }}
+                               className="w-1 h-1 rounded-full bg-acelera-orange"
+                             />
+                           )
                          ))}
                       </div>
                     </motion.div>
