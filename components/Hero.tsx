@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
   }, [isMobile]);
 
   return (
-    <section className="h-full w-full flex items-center justify-center relative px-6 overflow-hidden pt-14 md:pt-28 pb-4">
+    <section className="h-full w-full flex items-center justify-center relative px-6 overflow-hidden pt-8 md:pt-28 pb-4">
       <div className="absolute inset-0 -z-10 brand-gradient opacity-40"></div>
       
       <AnimatePresence>
@@ -209,30 +209,26 @@ const Hero: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.6 }}
-              className="w-full h-full flex flex-col pt-6 md:pt-0 no-scrollbar relative"
+              className="w-full h-full flex flex-col pt-6 md:pt-4 no-scrollbar relative"
             >
-              <div className="flex items-center justify-between mb-2 md:mb-6 max-w-6xl mx-auto w-full px-4 shrink-0">
-                <button 
-                  onClick={() => setView('main')}
-                  className="flex items-center gap-2 text-stone-400 hover:text-dark-charcoal transition-colors font-bold uppercase tracking-widest text-[10px] md:text-xs"
-                >
-                  <ChevronLeft size={16} /> BACK
-                </button>
-                <div className="flex items-center gap-2">
-                  <Sparkles size={16} className="text-acelera-orange" />
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-dark-charcoal/40">Our Method</span>
-                </div>
-              </div>
-
-              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-center mb-10 md:mb-8 tracking-tighter leading-none px-4 shrink-0">
-                {mode === 'B2B' ? 'How We Acquire ' : 'How We Scale '} 
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-center mb-4 md:mb-6 tracking-tighter leading-none px-4 shrink-0">
+                {mode === 'B2B' ? 'How We Acquire ' : 'How We Scale '}
                 <span className="relative">
                   {mode === 'B2B' ? 'Customers' : 'Brands'}
                   <span className="absolute bottom-1 left-0 w-full h-1 bg-acelera-orange/30 -z-10"></span>
                 </span>
               </h2>
 
-              <div className="relative max-w-7xl mx-auto md:px-4 w-full flex-1 overflow-hidden min-h-0">
+              <div className="flex items-center justify-center mb-6 md:mb-8 shrink-0">
+                <button
+                  onClick={() => setView('main')}
+                  className="flex items-center gap-2 text-stone-400 hover:text-dark-charcoal transition-colors font-bold uppercase tracking-widest text-xs md:text-sm"
+                >
+                  <ChevronLeft size={18} /> BACK
+                </button>
+              </div>
+
+              <div className="relative max-w-7xl mx-auto md:px-4 w-full flex-1 overflow-x-auto md:overflow-visible min-h-0">
                 {/* Acceleration Line Animation - Desktop only */}
                 <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px -translate-y-1/2 -z-10 pointer-events-none">
                   <svg width="100%" height="20" viewBox="0 0 1200 20" fill="none" preserveAspectRatio="none">
@@ -255,7 +251,7 @@ const Hero: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.95, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="min-w-[85vw] md:min-w-0 snap-center bg-dark-charcoal text-white p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl min-h-[220px] md:min-h-[260px] lg:h-[340px] flex flex-col relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500 shadow-xl shadow-black/20"
+                      className="min-w-[85vw] md:min-w-0 snap-center bg-dark-charcoal text-white p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl min-h-[220px] md:min-h-[240px] lg:h-[300px] flex flex-col relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500 shadow-xl shadow-black/20"
                     >
                       <div className="absolute -right-10 -top-10 w-24 h-24 bg-acelera-orange opacity-0 group-hover:opacity-10 blur-[40px] rounded-full transition-opacity duration-500"></div>
                       
@@ -312,7 +308,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-center pb-8 md:pb-12 mt-4 md:mt-20 shrink-0"
+                className="text-center pb-6 md:pb-8 mt-4 md:mt-10 shrink-0"
               >
                 <a 
                   href={BOOKING_URL}

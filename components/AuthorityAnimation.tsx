@@ -190,7 +190,7 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
               key="authority"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="w-full h-full flex flex-col pt-0 no-scrollbar relative"
+              className="w-full h-full flex flex-col pt-6 md:pt-8 no-scrollbar relative"
             >
               <div className="flex flex-col items-center mb-6 md:mb-10">
                 <div className="flex items-center gap-2 mb-4">
@@ -216,7 +216,7 @@ const AuthorityAnimation: React.FC<{ goToNext?: () => void }> = ({ goToNext }) =
                 </div>
               </div>
 
-              <div className="relative w-full max-w-7xl mx-auto mb-2 md:mb-10 overflow-hidden">
+              <div className="relative w-full max-w-7xl mx-auto mb-2 md:mb-10 overflow-x-auto md:overflow-visible">
                 <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory px-4 md:px-0 pb-6 md:pb-10">
                   {currentPillars.map((pillar, idx) => (
                     <motion.div

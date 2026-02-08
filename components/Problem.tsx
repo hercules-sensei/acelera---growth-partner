@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Problem: React.FC = () => {
   return (
-    <section className="h-full w-full flex items-center justify-center bg-stone-warm px-6 pt-14 md:pt-24 pb-6 overflow-y-auto sm:overflow-hidden">
+    <section className="h-full w-full flex items-center justify-center bg-stone-warm px-6 pt-8 md:pt-24 pb-6 overflow-y-auto sm:overflow-hidden">
       <div className="max-w-6xl w-full">
         <motion.h2 
           initial={{ opacity: 0, x: -30 }}
