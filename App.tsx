@@ -23,12 +23,21 @@ const SLIDES = [
 const App: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const currentIndexRef = useRef(0);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
   const touchStartX = useRef(0);
 
   currentIndexRef.current = currentIndex;
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const navigate = useCallback((nextIndex: number) => {
     const current = currentIndexRef.current;
@@ -37,8 +46,8 @@ const App: React.FC = () => {
     setDirection(nextIndex > current ? 1 : -1);
     setCurrentIndex(nextIndex);
     isAnimating.current = true;
-    setTimeout(() => { isAnimating.current = false; }, 700);
-  }, []);
+    setTimeout(() => { isAnimating.current = false; }, isMobile ? 500 : 700);
+  }, [isMobile]);
 
   // Wheel handler — registered once, uses ref
   useEffect(() => {
@@ -56,20 +65,26 @@ const App: React.FC = () => {
   // Touch handler — uses touchend for reliability, both listeners passive
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      const target = e.target as HTMLElement;
-      // Ignore touches on horizontally scrollable elements
-      if (target.closest('.overflow-x-auto, .snap-x')) return;
-
+      // Always capture touch coordinates
       touchStartY.current = e.touches[0].clientY;
       touchStartX.current = e.touches[0].clientX;
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
       if (isAnimating.current) return;
-      const target = e.target as HTMLElement;
-      // Ignore touches on horizontally scrollable elements
-      if (target.closest('.overflow-x-auto, .snap-x')) return;
 
+      // Check if we're inside a horizontally scrollable container
+      const target = e.target as HTMLElement;
+      const scrollContainer = target.closest('.overflow-x-auto, .snap-x');
+
+      // If in scroll container, check if the container actually scrolled
+      if (scrollContainer) {
+        const scrolled = scrollContainer.scrollLeft !== 0 &&
+                        scrollContainer.scrollLeft !== scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        if (scrolled) return; // User was scrolling horizontally, don't navigate
+      }
+
+      // Rest of navigation logic remains the same
       const endY = e.changedTouches[0].clientY;
       const endX = e.changedTouches[0].clientX;
       const deltaY = touchStartY.current - endY;
@@ -94,7 +109,7 @@ const App: React.FC = () => {
       y: direction > 0 ? '100%' : '-100%',
       opacity: 0,
       scale: 0.98,
-      filter: 'blur(10px)',
+      filter: isMobile ? 'blur(0px)' : 'blur(10px)', // No blur on mobile
     }),
     center: {
       y: 0,
@@ -102,7 +117,7 @@ const App: React.FC = () => {
       scale: 1,
       filter: 'blur(0px)',
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0.4 : 0.6, // Faster on mobile
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -110,9 +125,9 @@ const App: React.FC = () => {
       y: direction < 0 ? '100%' : '-100%',
       opacity: 0,
       scale: 1.02,
-      filter: 'blur(10px)',
+      filter: isMobile ? 'blur(0px)' : 'blur(10px)', // No blur on mobile
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0.4 : 0.6, // Faster on mobile
         ease: [0.16, 1, 0.3, 1],
       },
     }),

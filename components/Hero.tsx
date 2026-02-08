@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ArrowRight, Sparkles, ChevronLeft, MoveRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,6 +9,15 @@ type Mode = 'B2B' | 'DTC';
 const Hero: React.FC = () => {
   const [view, setView] = useState<HeroView>('main');
   const [mode, setMode] = useState<Mode>('B2B');
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const BOOKING_URL = "https://calendar.app.google/29to7brSPsZf5huk6";
 
@@ -69,16 +78,17 @@ const Hero: React.FC = () => {
   const currentPillars = mode === 'B2B' ? b2bPillars : dtcPillars;
 
   const noiseWords = ["clicks", "impressions", "reach", "leads", "traffic", "activity", "noise", "likes", "shares", "volume", "spam", "garbage", "clutter"];
-  
+
   const particles = useMemo(() => {
-    return Array.from({ length: 30 }).map((_, i) => ({
+    const particleCount = isMobile ? 8 : 30; // Reduce from 30 to 8 on mobile
+    return Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
       text: noiseWords[i % noiseWords.length],
       x: Math.random() * 100,
       y: Math.random() * 100,
       delay: Math.random() * 0.5
     }));
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="h-full w-full flex items-center justify-center relative px-6 overflow-hidden pt-14 md:pt-28 pb-4">
@@ -268,12 +278,19 @@ const Hero: React.FC = () => {
 
                       <div className="absolute bottom-3 right-5 flex gap-1 opacity-20 group-hover:opacity-100 transition-opacity">
                          {[...Array(idx + 1)].map((_, i) => (
-                           <motion.div 
-                            key={i}
-                            animate={{ opacity: [0.2, 1, 0.2] }}
-                            transition={{ duration: 0.8, delay: i * 0.1, repeat: Infinity }}
-                            className="w-1 h-1 rounded-full bg-acelera-orange"
-                           />
+                           isMobile ? (
+                             <div
+                               key={i}
+                               className="w-1 h-1 rounded-full bg-acelera-orange"
+                             />
+                           ) : (
+                             <motion.div
+                               key={i}
+                               animate={{ opacity: [0.2, 1, 0.2] }}
+                               transition={{ duration: 0.8, delay: i * 0.1, repeat: Infinity }}
+                               className="w-1 h-1 rounded-full bg-acelera-orange"
+                             />
+                           )
                          ))}
                       </div>
                     </motion.div>

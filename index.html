@@ -62,6 +62,24 @@
             touch-action: pan-x;
             -webkit-overflow-scrolling: touch;
         }
+        /* Optimize animations for mobile */
+        @media (max-width: 768px) {
+            * {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            /* Disable expensive effects on mobile */
+            .no-mobile-blur {
+                filter: none !important;
+            }
+
+            /* Enable hardware acceleration */
+            .motion-div {
+                transform: translateZ(0);
+                will-change: transform, opacity;
+            }
+        }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
