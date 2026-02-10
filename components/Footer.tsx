@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div>
             <div className="mb-6">
-              <img src="/logo.png" alt="Acelera" className="h-6 w-auto brightness-0 invert" />
+              <img src="/logo.png" alt="Acelera" className="h-8 w-auto brightness-0 invert" />
             </div>
             <p className="text-stone-500 max-w-sm">
               Authority-driven acquisition for B2B services and DTC brands looking for solid, real-world growth.

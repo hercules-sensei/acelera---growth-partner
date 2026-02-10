@@ -55,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 className="flex items-center gap-2 md:gap-3 group"
               >
-                <img src="/logo.png" alt="Acelera" className="h-12 md:h-16 w-auto transition-transform group-hover:scale-105" />
+                <img src="/logo.png" alt="Acelera" className="h-16 md:h-20 w-auto transition-transform group-hover:scale-105" />
               </motion.button>
             )}
           </AnimatePresence>
