@@ -10,6 +10,185 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "best-3pls-mexico-latam-dtc-guide",
+    title: "The Best 3PLs in Mexico, Brazil, and LATAM: A DTC Brand's Complete Guide",
+    excerpt:
+      "A ranked breakdown of every major fulfillment provider in Latin America — what they do, who they are best for, and what you need to know before you ship your first order.",
+    category: "DTC",
+    date: "February 26, 2026",
+    readTime: "12 min read",
+    content: `
+<p>The logistics infrastructure in Mexico and Latin America has matured faster than most Western brands realize. But the landscape is fragmented, the provider quality is uneven, and picking the wrong 3PL can mean multi-week delivery delays, customs holds, and a customer experience that kills your reviews before your brand has a chance to grow.</p>
+
+<p>This guide gives you a clear, ranked breakdown of every major fulfillment and shipping provider in Mexico, Brazil, and LATAM — what they actually do, who they are best for, and the operational details you need to know before you commit.</p>
+
+<h2>First: What "Dropshipping Inside Mexico" Actually Means</h2>
+
+<p>The term gets misused constantly. In the LATAM DTC context, it does not mean the traditional model of shipping from a Chinese supplier directly to a consumer. It means using a local Mexican 3PL as your domestic fulfillment center.</p>
+
+<p>Here is how it works operationally:</p>
+
+<ol>
+  <li>You import inventory into Mexico in bulk — either paying duties upfront on a standard customs entry, or using an Importer of Record (IOR) service if you do not have a Mexican legal entity.</li>
+  <li>Your inventory sits in the 3PL's warehouse in Mexico City, Guadalajara, or Monterrey.</li>
+  <li>When a customer orders on Shopify, Mercado Libre, or TikTok Shop, the 3PL picks, packs, and dispatches via a domestic carrier.</li>
+  <li>The customer receives their order in 1–3 days. You never touch the product.</li>
+</ol>
+
+<p>The key advantage over shipping from the US or Europe for every order: domestic Mexican delivery instead of 15–30 day international parcels, dramatically lower per-shipment cost, and a customer experience that can compete with local brands. It also sidesteps Mexico's 19% flat duty on courier imports from non-FTA countries — a regulation introduced in 2025 that made direct cross-border parcel delivery significantly more expensive for European and Asian brands.</p>
+
+<h2>The Regulatory Landscape You Need to Know</h2>
+
+<p>Before choosing a provider, understand the rules of the road.</p>
+
+<p><strong>De minimis threshold.</strong> Under USMCA, shipments from the US into Mexico valued under $117 USD can enter duty-free. Above that, duties vary by product category (typically 0–20% depending on HS code). For non-US brands (Europe, Asia), the 2025 rule applies a flat 19% duty on courier shipments under $2,500.</p>
+
+<p><strong>Importer of Record (IOR).</strong> If your brand has no Mexican legal entity (called an RFC — the Mexican tax ID), you cannot import goods into Mexico in your own name. You need an IOR. Several 3PLs — notably Cubbo — offer IOR services. Without one, your inventory gets stuck in customs.</p>
+
+<p><strong>Merchant of Record (MOR).</strong> If you collect payments from Mexican consumers without a local entity, you need an MOR to handle Mexican VAT (16%) and comply with SAT's mandatory e-invoicing requirements (CFDI), which became fully enforced in January 2025. Again, Cubbo is the most turnkey option for this for ecommerce brands.</p>
+
+<p><strong>IMMEX program.</strong> Mexico's maquila program allows certain goods to enter temporarily duty-free. However, in late 2024, Mexico significantly tightened IMMEX for ecommerce — particularly textiles, apparel, and footwear — so do not assume this applies to your product category without confirming with a customs broker.</p>
+
+<h2>Mexico 3PLs: Ranked</h2>
+
+<h3>#1 — Cubbo</h3>
+
+<p><strong>cubbo.com</strong> | Mexico + Brazil</p>
+
+<p>Cubbo is the most complete fulfillment solution for international DTC brands entering Mexico. It is the only major LATAM 3PL that offers IOR and MOR services bundled with fulfillment — which means a foreign brand can go from zero to selling in Mexico without needing a local legal entity, a customs broker relationship, or a Mexican accountant. Everything runs through one provider.</p>
+
+<p>The tech stack is genuinely impressive: native integrations with Shopify, WooCommerce, Amazon, Mercado Libre, TikTok Shop, Walmart Mexico, Liverpool, Coppel, and VTEX. Orders sync automatically, inventory updates in real time, and the dashboard shows fulfillment status across all channels from one place.</p>
+
+<p>Their published pricing (unusual in a market where most providers hide pricing behind sales calls) starts at roughly $1 MXN/month per minibin for storage and $18 MXN per order for pick and pack. Shipping starts around $92 MXN ($5 USD) for a 1–2 kg package on their economy tier. 250,000 sq ft of warehouse space in CDMX. Nationwide average delivery of 1.6 days. 99.8% order accuracy. 365-day operations including weekends and holidays.</p>
+
+<p>They also operate in Brazil (acquired Dedalog in 2022 to establish that presence), which makes them the only provider that lets a brand expand from Mexico into Brazil without switching logistics partners.</p>
+
+<p><strong>Best for:</strong> International brands (US, Canadian, European) entering Mexico without a local entity. Brands already in Mexico scaling into Brazil. Anyone who needs IOR/MOR + fulfillment under one roof.</p>
+
+<p><strong>Limitations:</strong> Not the cheapest option for ultra-high volume brands negotiating directly with carriers. Colombia expansion is still in progress.</p>
+
+<h3>#2 — 99minutos (Fulfill99)</h3>
+
+<p><strong>99minutos.com</strong> | Mexico, Colombia, Chile, Peru</p>
+
+<p>99minutos built its reputation as Mexico's fastest urban delivery network — same-day, next-day, and literal 99-minute express delivery in major metros. Their fulfillment arm (Fulfill99) adds full warehouse and pick-and-pack services to that delivery capability.</p>
+
+<p>What sets them apart is the Punto99 PUDO network: thousands of pickup and drop-off points across Mexico, which dramatically reduces failed deliveries — one of the biggest cost drains in LATAM ecommerce. For categories where customers may not be home (fashion, beauty, accessories), being able to offer PUDO at checkout meaningfully improves conversion and reduces redelivery costs.</p>
+
+<p>Backed by $82M in total funding led by OAK HC/FT. Multi-country presence across four LATAM markets. They also offer eco-delivery options (electric vehicles, bicycles, carbon offset programs) that matter for brands with sustainability positioning.</p>
+
+<p><strong>Best for:</strong> Brands in fashion, beauty, or any category where delivery speed and PUDO flexibility are competitive advantages. Brands already operating in Colombia, Chile, or Peru looking to expand their LATAM network through a single provider.</p>
+
+<p><strong>Limitations:</strong> Pricing is not published — requires a sales conversation. Fulfill99 warehousing is newer and less mature than their last-mile operation. Coverage outside major cities still relies on carrier partners.</p>
+
+<h3>#3 — Skydropx</h3>
+
+<p><strong>skydropx.com</strong> | Mexico</p>
+
+<p>Skydropx is not a traditional 3PL — it is the best shipping management platform in Mexico, and the most-used Shopify shipping integration in the country. If your brand operates its own warehouse in Mexico and needs to ship through multiple carriers with intelligent rate selection, Skydropx is the answer.</p>
+
+<p>Their AI Dispatch algorithm selects the optimal carrier (from 50+ options including DHL, FedEx, Estafeta, Redpack, J&T Express, and more) in real time for each order based on destination, weight, dimensions, and cost. They process over 3 million shipments per month. Two separate Shopify apps cover their shipping management and fulfillment services.</p>
+
+<p><strong>Best for:</strong> Mexico-based brands running their own warehouse who want carrier diversification, rate optimization, and the best Shopify shipping integration available in the market.</p>
+
+<p><strong>Limitations:</strong> Not a full-service 3PL. If you need someone to warehouse and pick-and-pack your orders, Skydropx is a secondary tool — pair it with a fulfillment provider, or use their lighter fulfillment add-on if your volume warrants it.</p>
+
+<h3>#4 — Envia.com</h3>
+
+<p><strong>envia.com</strong> | Mexico, USA, Colombia, Brazil, Argentina, Chile, and more (12 countries)</p>
+
+<p>Envia is the multi-country version of what Skydropx does in Mexico. If your brand needs to ship across multiple LATAM countries from a single shipping platform — rate comparison, label generation, tracking, and returns — Envia has the broadest geographic footprint of any LATAM shipping aggregator (12 countries as of 2026).</p>
+
+<p>Founded in 1997 in Monterrey. That longevity means more API stability, more carrier relationships, and a company that has survived multiple economic cycles in Mexico. Their Shopify app covers shipping and fulfillment, and integrations span 40+ marketplaces and platforms including WooCommerce, Wix, Magento, Mercado Libre, Amazon, and eBay.</p>
+
+<p><strong>Best for:</strong> Brands shipping across multiple LATAM countries who want a single platform for rate shopping and label management. Technical teams who need a robust API with multi-country support.</p>
+
+<p><strong>Limitations:</strong> Core product is a transportation management system, not warehouse fulfillment. The UI is less polished than Skydropx according to merchant reviews. Requires your own warehouse or a separate 3PL partner.</p>
+
+<h3>#5 — iVoy</h3>
+
+<p><strong>ivoy.mx</strong> | Mexico (CDMX, Guadalajara, Monterrey, Puebla, Toluca, Querétaro)</p>
+
+<p>iVoy is the premium same-day/on-demand delivery layer for brands where speed is a genuine product differentiator. 90-minute to same-day delivery via motorcycle, bicycle, or car couriers in six major Mexican metros. Revenue of approximately $75M annually.</p>
+
+<p><strong>Best for:</strong> High-value orders where same-day delivery is a competitive advantage (luxury goods, beauty gifting, electronics, perishables). Use as a premium delivery tier on top of a standard 3PL, not as your primary logistics provider.</p>
+
+<p><strong>Limitations:</strong> No warehousing or fulfillment. Six-city coverage only. Higher per-delivery cost than economy carriers. Not a viable primary logistics solution for nationwide ecommerce.</p>
+
+<h2>Mexico Carrier Comparison</h2>
+
+<p>Your 3PL will use one or more of these carriers for last-mile delivery. Understanding each one helps you set customer expectations and choose a 3PL whose carrier mix fits your category.</p>
+
+<p><strong>Estafeta</strong> — The gold standard for reliability in Mexico. 40+ years of operation, 5,000 vehicles, 2,000+ pickup points, cash-on-delivery capability, and a UPS alliance for international shipments. Coverage reaches 95% of Mexico including many addresses other carriers skip. Not the cheapest, but the most reliable option for brands where delivery consistency matters more than cost.</p>
+
+<p><strong>J&T Express</strong> — The disruptor. Since entering Mexico in 2021, J&T has aggressively undercut incumbent pricing by operating 365 days a year (a first in Mexico), building 1,300 service points across all 32 states, and leveraging their logistics relationship with SHEIN and Temu for volume. For high-volume DTC brands, J&T typically offers the lowest cost per order for non-urgent delivery. Delivery averages 3–5 days nationally. Growing fast.</p>
+
+<p><strong>FedEx Mexico</strong> — Strong for next-day delivery to major cities (89 national stations) and the best option when you need international capability alongside domestic. Premium pricing makes it less competitive for high-volume domestic DTC.</p>
+
+<p><strong>DHL Express Mexico</strong> — Premium carrier, strongest for international cross-border shipments. Domestic pricing is not competitive with Estafeta or J&T for pure Mexican ecommerce.</p>
+
+<p><strong>Redpack</strong> — Affordable with 200+ branches nationwide, but consistency complaints are a known issue. Better for non-time-sensitive shipments where cost optimization matters more than reliability.</p>
+
+<p><strong>99minutos (as carrier)</strong> — Best for urban express delivery in the 52 cities they cover. Use for brands offering same-day or next-day as a premium delivery tier.</p>
+
+<h2>Brazil 3PLs: Ranked</h2>
+
+<h3>#1 Full-Stack 3PL — Cubbo Brazil</h3>
+
+<p>Cubbo's Brazil operation (established via their Dedalog acquisition in 2022) is headquartered in São Paulo and offers the same full-stack fulfillment service as their Mexico operation. The biggest advantage: if you are already using Cubbo in Mexico, expanding into Brazil requires no new vendor relationship — same platform, same team, same operational standards. For international brands wanting a single LATAM logistics partner, this is the strongest option.</p>
+
+<h3>#1 Last-Mile Carrier — Loggi</h3>
+
+<p><strong>loggi.com</strong> | Brazil only</p>
+
+<p>Loggi is the technology-native last-mile carrier that has disrupted Brazilian ecommerce logistics. Delivery starts from R$4 in major cities. Next-day delivery from São Paulo metro. Same-day available in select zones. As of February 2025, Loggi integrates with 28 ecommerce platforms — more than any other Brazilian carrier — including Shopify (launched June 2024), WooCommerce, Yampi, Tray, Bling, and Olist. SoftBank-backed with the capital and engineering resources to keep expanding.</p>
+
+<p>Loggi does not warehouse inventory. Pair them with Cubbo Brazil or another fulfillment center for full-stack operations.</p>
+
+<h3>#2 Shipping Management — Mandaê</h3>
+
+<p><strong>mandae.com.br</strong> | Brazil only</p>
+
+<p>Mandaê is the carrier aggregator and shipping optimization platform acquired by Nuvemshop (Tiendanube) in 2021. If your Brazilian store runs on Tiendanube, Mandaê is the native shipping solution — deeply integrated, algorithm-driven carrier selection, and backed by IFC (World Bank), UPS, and Mercado Libre. For Shopify-based brands, it is a secondary option compared to Loggi's native Shopify integration.</p>
+
+<h3>#3 PUDO Network — Kangu</h3>
+
+<p><strong>kangu.com.br</strong> | Brazil, Mexico, Colombia</p>
+
+<p>Acquired by Mercado Libre in 2021, Kangu operates a network of 5,000 pickup and drop-off points across 700+ Brazilian cities — most of them small neighborhood businesses (stationery stores, clothing shops, pet stores) that serve as delivery agents. This is the most effective way to reduce failed delivery attempts in Brazil's dense urban areas and hard-to-reach addresses. Use Kangu as a delivery option layer, not as a primary 3PL.</p>
+
+<h2>Colombia: Best Option</h2>
+
+<h3>Melonn</h3>
+
+<p><strong>melonn.com</strong> | Colombia (Bogotá, Medellín, Cali, Barranquilla) + Mexico (CDMX)</p>
+
+<p>Melonn is the leading ecommerce 3PL built specifically for Colombia. Full-stack fulfillment — storage, pick, pack, ship — with same-day and next-day delivery from their fulfillment centers in four major Colombian cities. Their software platform centralizes inventory across Shopify, WooCommerce, Mercado Libre, Amazon, Rappi Mall, and more from one dashboard.</p>
+
+<p>$20M Series A raised in February 2022. A Shopify app is available on the App Store. For Colombian DTC brands, Melonn is the clear first choice. For brands entering Colombia from abroad, Melonn's IOR capabilities are more limited than Cubbo's — confirm the specific support they provide for foreign entities before committing.</p>
+
+<h2>How to Choose: A Decision Framework</h2>
+
+<p><strong>If you are a foreign brand (US, Canada, Europe) entering Mexico for the first time:</strong> Start with Cubbo. The IOR and MOR services eliminate the most complex operational hurdles, the tech integrations are best-in-class, and the published pricing lets you model unit economics before you commit. Once volume and brand presence are established, you can evaluate whether a custom arrangement with a larger carrier partner offers better economics at scale.</p>
+
+<p><strong>If you are a Mexico-native brand with your own warehouse:</strong> Skydropx for shipping management (carrier selection, label generation, Shopify integration). Envia if you need multi-country capability. iVoy as a same-day premium tier if your category supports it.</p>
+
+<p><strong>If you are entering Brazil:</strong> Cubbo for fulfillment, Loggi for last-mile delivery, Kangu for PUDO coverage. These three together give you a full-stack operation that covers the major consumer bases.</p>
+
+<p><strong>If Colombia is your primary target:</strong> Melonn, unambiguously. Confirm IOR support if you are a foreign entity.</p>
+
+<p><strong>If you need multi-country LATAM from day one:</strong> Cubbo covers Mexico and Brazil. 99minutos covers Mexico, Colombia, Chile, and Peru. Envia covers 12 countries for shipping management. No single provider yet covers all of LATAM end-to-end for full-stack fulfillment — plan for two partners if you need both Mexico and Colombia from launch.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>The LATAM 3PL market is not the Wild West it was five years ago. Real infrastructure exists. Real providers can deliver 1–3 day service to the consumers who are actively spending online across the region.</p>
+
+<p>The brands that will win in Mexico and LATAM are the ones that treat logistics as a competitive advantage — not an afterthought. Choosing the right provider, understanding the customs framework, and modeling the unit economics correctly before launch separates the brands that scale cleanly from the ones that spend six months untangling operational problems.</p>
+
+<p>If you want help mapping out the logistics and commercial structure for a LATAM expansion — including which provider fits your specific category and volume profile — <a href="https://calendar.app.google/29to7brSPsZf5huk6">book a call with us</a>. We have run this playbook and know exactly where the traps are.</p>
+    `,
+  },
+  {
     slug: "mexico-latam-dtc-opportunity-2026",
     title: "Mexico and LATAM Are the Best Expansion Play for DTC Brands in 2026",
     excerpt:
