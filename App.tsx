@@ -9,6 +9,7 @@ import AuthorityAnimation from './components/AuthorityAnimation';
 import Services from './components/Services';
 import Impact from './components/Impact';
 import Mission from './components/Mission';
+import Blog from './components/Blog';
 
 const SLIDES = [
   { id: 'home', component: Hero },
@@ -18,6 +19,7 @@ const SLIDES = [
   { id: 'services', component: Services },
   { id: 'impact', component: Impact },
   { id: 'mission', component: Mission },
+  { id: 'blog', component: Blog },
 ];
 
 const App: React.FC = () => {
@@ -136,7 +138,7 @@ const App: React.FC = () => {
   const ActiveComponent = SLIDES[currentIndex].component;
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white">
+    <div className="h-screen w-screen overflow-hidden bg-stone-light selection:bg-acelera-orange selection:text-white" style={{ position: 'fixed', top: 0, left: 0 }}>
 
       <Navbar onNavClick={navigate} activeIndex={currentIndex} slides={SLIDES} />
 

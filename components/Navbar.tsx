@@ -111,24 +111,30 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, activeIndex, slides }) => {
         </div>
         
         <div className="hidden lg:flex items-center gap-14 text-base font-bold uppercase tracking-widest opacity-80">
-          <button 
-            onClick={() => onNavClick(getIndexById('authority'))} 
+          <button
+            onClick={() => onNavClick(getIndexById('authority'))}
             className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('authority') ? 'text-dark-charcoal opacity-100' : ''}`}
           >
             Our Method
           </button>
-          <button 
-            onClick={() => onNavClick(getIndexById('services'))} 
+          <button
+            onClick={() => onNavClick(getIndexById('services'))}
             className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('services') ? 'text-dark-charcoal opacity-100' : ''}`}
           >
             Services
           </button>
-          <button 
-            onClick={() => onNavClick(getIndexById('philosophy'))} 
+          <button
+            onClick={() => onNavClick(getIndexById('philosophy'))}
             className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('philosophy') ? 'text-dark-charcoal opacity-100' : ''}`}
           >
             Philosophy
           </button>
+          <a
+            href="/blog"
+            className={`hover:opacity-100 transition-opacity ${activeIndex === getIndexById('blog') ? 'text-dark-charcoal opacity-100' : ''}`}
+          >
+            Blog
+          </a>
         </div>
 
         <a 

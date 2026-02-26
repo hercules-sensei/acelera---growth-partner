@@ -20,6 +20,7 @@ const Footer: React.FC = () => {
               <span className="text-white font-bold mb-2">Company</span>
               <a href="#" className="hover:text-acelera-orange transition-colors">Approach</a>
               <a href="#" className="hover:text-acelera-orange transition-colors">Impact</a>
+              <a href="/blog" className="hover:text-acelera-orange transition-colors">Blog</a>
               <a href="https://calendar.app.google/29to7brSPsZf5huk6" target="_blank" rel="noopener noreferrer" className="hover:text-acelera-orange transition-colors">Contact</a>
             </div>
             <div className="flex flex-col gap-3">
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-6 text-xs text-stone-600 uppercase tracking-widest font-bold">
-          <span>© 2024 Acelera. All rights reserved. Precision Growth Partner.</span>
+          <span>© 2026 Acelera. All rights reserved.</span>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
             <a href="#" className="hover:text-white transition-colors">X (Twitter)</a>
